@@ -27,6 +27,7 @@ use App\Tools\NavigationTools;
             <ul class="nav nav-pills">
                 <li class="nav-item">
                     <a href="index.php" class="nav-link px-2 <?= NavigationTools::addActiveClass('page', 'home') ?>">Accueil</a>
+                    <a href="index.php?controller=page&action=about" class="nav-link px-2 <?= NavigationTools::addActiveClass('page', 'about') ?>">A propos</a>
                 </li>
             </ul>
 
@@ -37,7 +38,6 @@ use App\Tools\NavigationTools;
                 <?php } else { ?>
                     <a href="index.php?controller=auth&action=login" class="btn btn-outline-primary me-2 <?= NavigationTools::addActiveClass('auth', 'login') ?>">Connexion</a>
                     <a href="index.php?controller=user&action=register" class="btn btn-outline-primary me-2 <?= NavigationTools::addActiveClass('user', 'register') ?>">Inscription</a>
-                    <a href="index.php?controller=page&action=about" class="btn btn-outline-primary me-2 <?= NavigationTools::addActiveClass('page', 'about') ?>">A propos</a>
                 <?php } ?>
             </div>
         </header>
