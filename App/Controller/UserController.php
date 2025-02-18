@@ -46,19 +46,22 @@ class UserController extends Controller
             $user->setFirstName($_POST['first_name']);
             $user->setLastName($_POST['last_name']);
 
-            $userPost = $userRepository->persist($user);
-
-            if ($userPost) {
-                header('location: index.php');
+            if ($user->validate()) {
+                $errors = $user->validate();
             } else {
-                $errors[] = 'Problème lors de l\'ajout du commentaire.';
+                $userPost = $userRepository->persist($user);
+                if ($userPost) {
+                    header('location: index.php');
+                } else {
+                    $errors[] = 'Problème lors de l\'ajout du commentaire.';
+                }
             }
         }
 
         $this->render('user/add_edit', [
             'user' => '',
             'pageTitle' => 'Inscription',
-            'errors' => ''
+            'errors' => $errors
         ]);
     }
 

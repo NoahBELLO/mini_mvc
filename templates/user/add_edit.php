@@ -4,6 +4,12 @@
 
 <h1><?= $pageTitle; ?></h1>
 
+<?php foreach ($errors as $error) { ?>
+    <div class="alert alert-danger" role="alert">
+        <?= $error; ?>
+    </div>
+<?php } ?>
+
 <form method="POST">
     <div class="mb-3">
         <label for="first_name" class="form-label">Prénom</label>
