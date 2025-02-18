@@ -46,9 +46,9 @@ class UserController extends Controller
             $user->setFirstName($_POST['first_name']);
             $user->setLastName($_POST['last_name']);
 
-            if ($user->validate()) {
-                $errors = $user->validate();
-            } else {
+            $errors = $user->validate();
+
+            if (count($errors) < 0) {
                 $userPost = $userRepository->persist($user);
                 if ($userPost) {
                     header('location: index.php');
