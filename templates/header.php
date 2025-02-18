@@ -38,6 +38,7 @@ use App\Tools\NavigationTools;
                 <?php } else { ?>
                     <a href="index.php?controller=auth&action=login" class="btn btn-outline-primary me-2 <?= NavigationTools::addActiveClass('auth', 'login') ?>">Connexion</a>
                     <a href="index.php?controller=user&action=register" class="btn btn-outline-primary me-2 <?= NavigationTools::addActiveClass('user', 'register') ?>">Inscription</a>
+                    <a href="index.php?controller=article&action=list" class="btn btn-outline-primary me-2 <?= NavigationTools::addActiveClass('article', 'list') ?>">Liste d'article</a>
                 <?php } ?>
             </div>
         </header>

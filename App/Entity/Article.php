@@ -45,21 +45,4 @@ class Article extends Entity
 
         return $this;
     }
-
-    /*
-        Pourrait être déplacé dans une classe ArticleValidator
-    */
-    public function validate(): array
-    {
-        $errors = [];
-        if (empty($this->getTitle())) {
-            $errors['title'] = 'Le champ titre ne doit pas être vide';
-        } else if (!filter_var($this->getTitle(), FILTER_VALIDATE_EMAIL)) {
-            $errors['title'] = 'Le titre n\'est pas valide';
-        }
-        if (empty($this->getDescription())) {
-            $errors['description'] = 'Le champ description ne doit pas être vide';
-        }
-        return $errors;
-    }
 }

@@ -32,29 +32,34 @@ class UserController extends Controller
             ]);
         }
     }
-  
+
     protected function register()
     {
-        try {
-            $errors = [];
+        $errors = [];
+
+        if (isset($_POST['saveUser'])) {
+            $userRepository = new UserRepository();
+
             $user = new User();
+            $user->setEmail($_POST['email']);
+            $user->setPassword($_POST['password']);
+            $user->setFirstName($_POST['first_name']);
+            $user->setLastName($_POST['last_name']);
 
-            if (isset($_POST['saveUser'])) {
-                //@todo gérer l'inscription utilisateur
+            $userPost = $userRepository->persist($user);
+
+            if ($userPost) {
+                header('location: index.php');
+            } else {
+                $errors[] = 'Problème lors de l\'ajout du commentaire.';
             }
+        }
 
-            $this->render('user/add_edit', [
-                'user' => '',
-                'pageTitle' => 'Inscription',
-                'errors' => ''
-            ]);
-
-        } catch (\Exception $e) {
-            $this->render('errors/default', [
-                'error' => $e->getMessage()
-            ]);
-        } 
-
+        $this->render('user/add_edit', [
+            'user' => '',
+            'pageTitle' => 'Inscription',
+            'errors' => ''
+        ]);
     }
 
 }
